@@ -193,11 +193,26 @@
             margin-right: auto;
         }
 
+        .cta-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
         .cta-buttons {
             display: flex;
             gap: 1.5rem;
             justify-content: center;
-            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
         }
 
         .btn {
@@ -228,6 +243,40 @@
             backdrop-filter: blur(10px);
             border-color: var(--accent-cyan);
             color: var(--accent-cyan);
+        }
+
+        .btn-social {
+            padding: 0.6rem 1.5rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .btn-social:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 168, 255, 0.2);
+        }
+
+        .btn-github:hover {
+            border-color: #6cc644;
+            color: #6cc644;
+            box-shadow: 0 10px 20px rgba(108, 198, 68, 0.2);
+        }
+
+        .btn-linkedin:hover {
+            border-color: #0077b5;
+            color: #0077b5;
+            box-shadow: 0 10px 20px rgba(0, 119, 181, 0.2);
+        }
+
+        .btn-gmail:hover {
+            border-color: #ea4335;
+            color: #ea4335;
+            box-shadow: 0 10px 20px rgba(234, 67, 53, 0.2);
         }
 
         .btn::before {
@@ -507,6 +556,10 @@
                 width: 200px;
                 justify-content: center;
             }
+
+            .social-buttons {
+                flex-wrap: wrap;
+            }
         }
     </style>
 </head>
@@ -549,13 +602,32 @@
                 <strong>IMPORTANT:</strong> This is strictly a simulation. All attack data is procedurally generated locally 
                 using statistical distribution models. No real network traffic or live attack intelligence is used or consumed.
             </div>
-            <div class="cta-buttons">
-                <a href="#" class="btn btn-primary">
-                    <i class="fas fa-play"></i> View Demo
-                </a>
-                <a href="#" class="btn btn-secondary">
-                    <i class="fab fa-github"></i> Source Code
-                </a>
+            <div class="cta-container">
+                <div class="cta-buttons">
+                    <a href="https://linkedin.com" target="_blank" class="btn btn-primary">
+                        <i class="fas fa-play"></i> View Demo
+                    </a>
+                    <a href="https://github.com" target="_blank" class="btn btn-secondary">
+                        <i class="fas fa-code"></i> Source Code
+                    </a>
+                    <a href="#" class="btn btn-secondary" onclick="showDocumentation(); return false;">
+                        <i class="fas fa-book"></i> Documentation
+                    </a>
+                    <a href="#" class="btn btn-secondary" onclick="showAbout(); return false;">
+                        <i class="fas fa-info-circle"></i> About
+                    </a>
+                </div>
+                <div class="social-buttons">
+                    <a href="https://github.com" target="_blank" class="btn btn-social btn-github">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="btn btn-social btn-linkedin">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="mailto:your.email@gmail.com" class="btn btn-social btn-gmail">
+                        <i class="fas fa-envelope"></i> Gmail
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -656,10 +728,10 @@
     <footer id="contact">
         <div class="footer-content">
             <div class="social-links">
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="mailto:your.email@gmail.com"><i class="fas fa-envelope"></i></a>
             </div>
             <p class="copyright">© 2023 DDoS Intelligence System. All rights reserved.</p>
         </div>
@@ -675,6 +747,180 @@
                 });
             });
         });
+
+        // Functions for Documentation and About buttons
+        function showDocumentation() {
+            // Create modal for documentation
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+                backdrop-filter: blur(10px);
+            `;
+            
+            const content = document.createElement('div');
+            content.style.cssText = `
+                background: var(--glass-bg);
+                backdrop-filter: blur(20px);
+                border: 1px solid var(--glass-border);
+                border-radius: 20px;
+                padding: 3rem;
+                max-width: 600px;
+                color: var(--text-primary);
+                position: relative;
+                animation: modalFadeIn 0.3s ease-out;
+            `;
+            
+            content.innerHTML = `
+                <h2 style="font-family: 'Orbitron', sans-serif; margin-bottom: 1.5rem; color: var(--accent-cyan);">
+                    <i class="fas fa-book"></i> Documentation
+                </h2>
+                <p style="margin-bottom: 1rem; line-height: 1.6;">
+                    The DDoS Intelligence System documentation includes:
+                </p>
+                <ul style="list-style: none; padding: 0; margin-bottom: 1.5rem;">
+                    <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--accent-cyan); margin-right: 0.5rem;"></i> Installation Guide</li>
+                    <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--accent-cyan); margin-right: 0.5rem;"></i> API Reference</li>
+                    <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--accent-cyan); margin-right: 0.5rem;"></i> Configuration Options</li>
+                    <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--accent-cyan); margin-right: 0.5rem;"></i> Troubleshooting</li>
+                    <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--accent-cyan); margin-right: 0.5rem;"></i> Best Practices</li>
+                </ul>
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                    Full documentation is available in the project repository.
+                </p>
+                <button onclick="this.parentElement.parentElement.remove()" style="
+                    position: absolute;
+                    top: 1rem;
+                    right: 1rem;
+                    background: transparent;
+                    border: none;
+                    color: var(--text-secondary);
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                    transition: color 0.3s;
+                " onmouseover="this.style.color='var(--accent-cyan)'" onmouseout="this.style.color='var(--text-secondary)'">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            modal.appendChild(content);
+            document.body.appendChild(modal);
+            
+            // Close modal on background click
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+        }
+
+        function showAbout() {
+            // Create modal for about
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+                backdrop-filter: blur(10px);
+            `;
+            
+            const content = document.createElement('div');
+            content.style.cssText = `
+                background: var(--glass-bg);
+                backdrop-filter: blur(20px);
+                border: 1px solid var(--glass-border);
+                border-radius: 20px;
+                padding: 3rem;
+                max-width: 600px;
+                color: var(--text-primary);
+                position: relative;
+                animation: modalFadeIn 0.3s ease-out;
+            `;
+            
+            content.innerHTML = `
+                <h2 style="font-family: 'Orbitron', sans-serif; margin-bottom: 1.5rem; color: var(--accent-cyan);">
+                    <i class="fas fa-info-circle"></i> About
+                </h2>
+                <p style="margin-bottom: 1rem; line-height: 1.6;">
+                    The DDoS Intelligence System is an advanced visualization platform designed for cybersecurity professionals and researchers.
+                </p>
+                <p style="margin-bottom: 1rem; line-height: 1.6;">
+                    <strong style="color: var(--accent-cyan);">Version:</strong> 1.0.0<br>
+                    <strong style="color: var(--accent-cyan);">License:</strong> MIT<br>
+                    <strong style="color: var(--accent-cyan);">Last Updated:</strong> 2023
+                </p>
+                <p style="margin-bottom: 1.5rem; line-height: 1.6; color: var(--text-secondary);">
+                    This project demonstrates real-time data visualization, WebSocket communication, and 3D graphics rendering in a cybersecurity context.
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <a href="https://github.com" target="_blank" style="
+                        padding: 0.5rem 1.5rem;
+                        background: var(--glass-bg);
+                        border: 1px solid var(--accent-cyan);
+                        color: var(--accent-cyan);
+                        text-decoration: none;
+                        border-radius: 8px;
+                        transition: all 0.3s;
+                    " onmouseover="this.style.background='rgba(0, 212, 255, 0.1)'" onmouseout="this.style.background='var(--glass-bg)'">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+                <button onclick="this.parentElement.parentElement.remove()" style="
+                    position: absolute;
+                    top: 1rem;
+                    right: 1rem;
+                    background: transparent;
+                    border: none;
+                    color: var(--text-secondary);
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                    transition: color 0.3s;
+                " onmouseover="this.style.color='var(--accent-cyan)'" onmouseout="this.style.color='var(--text-secondary)'">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            modal.appendChild(content);
+            document.body.appendChild(modal);
+            
+            // Close modal on background click
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+        }
+
+        // Add CSS for modal animation
+        const modalStyle = document.createElement('style');
+        modalStyle.textContent = `
+            @keyframes modalFadeIn {
+                from {
+                    opacity: 0;
+                    transform: scale(0.9);
+                }
+                to {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+        `;
+        document.head.appendChild(modalStyle);
 
         // Add interactive hover effect to feature cards
         const featureCards = document.querySelectorAll('.feature-card');
